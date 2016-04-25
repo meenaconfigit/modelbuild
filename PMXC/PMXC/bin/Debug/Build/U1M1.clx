@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="clx.xsl"?>
+<!-- DOCTYPE calculation SYSTEM "clx.dtd" -->
+<calculation>
+  <namespace name="Properties">
+    <function name="Name" type="string">
+      <stmt>
+        <return_stmt>
+          <expr>
+            <string_const value="U1M1"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+  </namespace>
+  <namespace name="B1.Properties">
+    <function name="Name" type="string">
+      <stmt>
+        <return_stmt>
+          <expr>
+            <string_const value="B1"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+  </namespace>
+  <namespace name="I1.Properties">
+    <function name="Name" type="string">
+      <stmt>
+        <return_stmt>
+          <expr>
+            <string_const value="I1"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+  </namespace>
+  <namespace name="CurrentLanguage.Properties">
+    <function name="Show" type="bool">
+      <stmt>
+        <return_stmt>
+          <expr>
+            <false/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+  </namespace>
+  <namespace name="CurrentLanguage">
+    <function name="SubstituteCurly" type="string">
+      <arg name="__str__" type="string"/>
+      <vardef name="offset" type="int">
+        <expr>
+          <int_const value="0"/>
+        </expr>
+      </vardef>
+      <vardef name="curly_start" type="int">
+        <expr>
+          <int_const value="0"/>
+        </expr>
+      </vardef>
+      <vardef name="curly_end" type="int">
+        <expr>
+          <int_const value="0"/>
+        </expr>
+      </vardef>
+      <vardef name="result" type="string">
+        <expr>
+          <string_const value=""/>
+        </expr>
+      </vardef>
+      <vardef name="varname" type="string">
+        <expr>
+          <string_const value=""/>
+        </expr>
+      </vardef>
+      <stmt>
+        <do_stmt>
+          <expr>
+            <true/>
+          </expr>
+          <stmt>
+            <block_stmt>
+              <stmt>
+                <expr_stmt>
+                  <expr>
+                    <bop opr="assign">
+                      <expr>
+                        <lvar name="curly_start"/>
+                      </expr>
+                      <expr>
+                        <call namespace="String" fname="IndexOfNext">
+                          <expr>
+                            <lvar name="__str__"/>
+                          </expr>
+                          <expr>
+                            <string_const value="{"/>
+                          </expr>
+                          <expr>
+                            <lvar name="offset"/>
+                          </expr>
+                        </call>
+                      </expr>
+                    </bop>
+                  </expr>
+                </expr_stmt>
+              </stmt>
+              <stmt>
+                <ite_stmt>
+                  <expr>
+                    <bop opr="eq">
+                      <expr>
+                        <lvar name="curly_start"/>
+                      </expr>
+                      <expr>
+                        <int_const value="-1"/>
+                      </expr>
+                    </bop>
+                  </expr>
+                  <stmt>
+                    <break_stmt/>
+                  </stmt>
+                </ite_stmt>
+              </stmt>
+              <stmt>
+                <expr_stmt>
+                  <expr>
+                    <bop opr="assign">
+                      <expr>
+                        <lvar name="curly_end"/>
+                      </expr>
+                      <expr>
+                        <call namespace="String" fname="IndexOfNext">
+                          <expr>
+                            <lvar name="__str__"/>
+                          </expr>
+                          <expr>
+                            <string_const value="}"/>
+                          </expr>
+                          <expr>
+                            <bop opr="plus">
+                              <expr>
+                                <lvar name="offset"/>
+                              </expr>
+                              <expr>
+                                <int_const value="1"/>
+                              </expr>
+                            </bop>
+                          </expr>
+                        </call>
+                      </expr>
+                    </bop>
+                  </expr>
+                </expr_stmt>
+              </stmt>
+              <stmt>
+                <ite_stmt>
+                  <expr>
+                    <bop opr="eq">
+                      <expr>
+                        <lvar name="curly_end"/>
+                      </expr>
+                      <expr>
+                        <int_const value="-1"/>
+                      </expr>
+                    </bop>
+                  </expr>
+                  <stmt>
+                    <break_stmt/>
+                  </stmt>
+                </ite_stmt>
+              </stmt>
+              <stmt>
+                <expr_stmt>
+                  <expr>
+                    <bop opr="assign">
+                      <expr>
+                        <lvar name="varname"/>
+                      </expr>
+                      <expr>
+                        <call namespace="String" fname="SubString">
+                          <expr>
+                            <lvar name="__str__"/>
+                          </expr>
+                          <expr>
+                            <bop opr="plus">
+                              <expr>
+                                <lvar name="curly_start"/>
+                              </expr>
+                              <expr>
+                                <int_const value="1"/>
+                              </expr>
+                            </bop>
+                          </expr>
+                          <expr>
+                            <bop opr="minus">
+                              <expr>
+                                <bop opr="minus">
+                                  <expr>
+                                    <lvar name="curly_end"/>
+                                  </expr>
+                                  <expr>
+                                    <lvar name="curly_start"/>
+                                  </expr>
+                                </bop>
+                              </expr>
+                              <expr>
+                                <int_const value="1"/>
+                              </expr>
+                            </bop>
+                          </expr>
+                        </call>
+                      </expr>
+                    </bop>
+                  </expr>
+                </expr_stmt>
+              </stmt>
+              <stmt>
+                <expr_stmt>
+                  <expr>
+                    <bop opr="assign">
+                      <expr>
+                        <lvar name="result"/>
+                      </expr>
+                      <expr>
+                        <bop opr="plus">
+                          <expr>
+                            <bop opr="plus">
+                              <expr>
+                                <lvar name="result"/>
+                              </expr>
+                              <expr>
+                                <call namespace="String" fname="SubString">
+                                  <expr>
+                                    <lvar name="__str__"/>
+                                  </expr>
+                                  <expr>
+                                    <lvar name="offset"/>
+                                  </expr>
+                                  <expr>
+                                    <bop opr="minus">
+                                      <expr>
+                                        <lvar name="curly_start"/>
+                                      </expr>
+                                      <expr>
+                                        <lvar name="offset"/>
+                                      </expr>
+                                    </bop>
+                                  </expr>
+                                </call>
+                              </expr>
+                            </bop>
+                          </expr>
+                          <expr>
+                            <call namespace="CurrentLanguage" fname="PresentationNameForVariableValue">
+                              <expr>
+                                <lvar name="varname"/>
+                              </expr>
+                              <expr>
+                                <string_const value=""/>
+                              </expr>
+                            </call>
+                          </expr>
+                        </bop>
+                      </expr>
+                    </bop>
+                  </expr>
+                </expr_stmt>
+              </stmt>
+              <stmt>
+                <expr_stmt>
+                  <expr>
+                    <bop opr="assign">
+                      <expr>
+                        <lvar name="offset"/>
+                      </expr>
+                      <expr>
+                        <bop opr="plus">
+                          <expr>
+                            <lvar name="curly_end"/>
+                          </expr>
+                          <expr>
+                            <int_const value="1"/>
+                          </expr>
+                        </bop>
+                      </expr>
+                    </bop>
+                  </expr>
+                </expr_stmt>
+              </stmt>
+            </block_stmt>
+          </stmt>
+        </do_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <bop opr="plus">
+              <expr>
+                <lvar name="result"/>
+              </expr>
+              <expr>
+                <call namespace="String" fname="SubString">
+                  <expr>
+                    <lvar name="__str__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="offset"/>
+                  </expr>
+                  <expr>
+                    <bop opr="minus">
+                      <expr>
+                        <call namespace="String" fname="Length">
+                          <expr>
+                            <lvar name="__str__"/>
+                          </expr>
+                        </call>
+                      </expr>
+                      <expr>
+                        <lvar name="offset"/>
+                      </expr>
+                    </bop>
+                  </expr>
+                </call>
+              </expr>
+            </bop>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="Translate" type="string">
+      <arg name="__key__" type="string"/>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <call namespace="CurrentLanguage" fname="SubstituteCurly">
+              <expr>
+                <call namespace="CtrlMngr" fname="GetPresentation">
+                  <expr>
+                    <lvar name="__key__"/>
+                  </expr>
+                  <expr>
+                    <bop opr="plus">
+                      <expr>
+                        <string_const value="Language."/>
+                      </expr>
+                      <expr>
+                        <pmvar name="CurrentLanguage"/>
+                      </expr>
+                    </bop>
+                  </expr>
+                </call>
+              </expr>
+            </call>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="PresentationNameForVariable" type="string">
+      <arg name="__varname__" type="string"/>
+      <arg name="default_value" type="string"/>
+      <vardef name="__ns_name__" type="string">
+        <expr>
+          <bop opr="plus">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+            <expr>
+              <string_const value=".Properties"/>
+            </expr>
+          </bop>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <call namespace="Calc" fname="HasFunction">
+              <expr>
+                <lvar name="__ns_name__"/>
+              </expr>
+              <expr>
+                <pmvar name="CurrentLanguage"/>
+              </expr>
+            </call>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <call namespace="Calc" fname="CallStringFunction">
+                  <expr>
+                    <lvar name="__ns_name__"/>
+                  </expr>
+                  <expr>
+                    <pmvar name="CurrentLanguage"/>
+                  </expr>
+                </call>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <lvar name="default_value"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="PresentationNameForValue" type="string">
+      <arg name="typename" type="string"/>
+      <arg name="value" type="string"/>
+      <arg name="default_value" type="string"/>
+      <vardef name="__ns_name__" type="string">
+        <expr>
+          <bop opr="plus">
+            <expr>
+              <bop opr="plus">
+                <expr>
+                  <bop opr="plus">
+                    <expr>
+                      <string_const value="Types."/>
+                    </expr>
+                    <expr>
+                      <lvar name="typename"/>
+                    </expr>
+                  </bop>
+                </expr>
+                <expr>
+                  <bop opr="plus">
+                    <expr>
+                      <string_const value="."/>
+                    </expr>
+                    <expr>
+                      <lvar name="value"/>
+                    </expr>
+                  </bop>
+                </expr>
+              </bop>
+            </expr>
+            <expr>
+              <string_const value=".Properties"/>
+            </expr>
+          </bop>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <call namespace="Calc" fname="HasFunction">
+              <expr>
+                <lvar name="__ns_name__"/>
+              </expr>
+              <expr>
+                <pmvar name="CurrentLanguage"/>
+              </expr>
+            </call>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <call namespace="Calc" fname="CallStringFunction">
+                  <expr>
+                    <lvar name="__ns_name__"/>
+                  </expr>
+                  <expr>
+                    <pmvar name="CurrentLanguage"/>
+                  </expr>
+                </call>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <lvar name="default_value"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="PresentationNameForVariableValue" type="string">
+      <arg name="__varname__" type="string"/>
+      <arg name="default_value" type="string"/>
+      <vardef name="value_idx" type="int">
+        <expr>
+          <call namespace="CtrlMngr" fname="GetSelectedValue">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+          </call>
+        </expr>
+      </vardef>
+      <vardef name="value_name" type="string">
+        <expr>
+          <string_const value=""/>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <bop opr="or">
+              <expr>
+                <bop opr="eq">
+                  <expr>
+                    <lvar name="value_idx"/>
+                  </expr>
+                  <expr>
+                    <int_const value="-1"/>
+                  </expr>
+                </bop>
+              </expr>
+              <expr>
+                <bop opr="eq">
+                  <expr>
+                    <lvar name="value_idx"/>
+                  </expr>
+                  <expr>
+                    <call namespace="CtrlMngr" fname="CTRL_MNGR_ERROR"/>
+                  </expr>
+                </bop>
+              </expr>
+            </bop>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <lvar name="default_value"/>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <expr_stmt>
+          <expr>
+            <bop opr="assign">
+              <expr>
+                <lvar name="value_name"/>
+              </expr>
+              <expr>
+                <call namespace="CtrlMngr" fname="GetValueName">
+                  <expr>
+                    <lvar name="__varname__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="value_idx"/>
+                  </expr>
+                </call>
+              </expr>
+            </bop>
+          </expr>
+        </expr_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <call namespace="CurrentLanguage" fname="PresentationNameForValue">
+              <expr>
+                <call namespace="CtrlMngr" fname="GetPresentation">
+                  <expr>
+                    <lvar name="__varname__"/>
+                  </expr>
+                  <expr>
+                    <string_const value="VariableNameToTypeName"/>
+                  </expr>
+                </call>
+              </expr>
+              <expr>
+                <lvar name="value_name"/>
+              </expr>
+              <expr>
+                <lvar name="value_name"/>
+              </expr>
+            </call>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+  </namespace>
+  <namespace name="BuildIn">
+    <function name="GetValuePropertyNamespaceName" type="string">
+      <arg name="__varname__" type="string"/>
+      <vardef name="__value_idx__" type="int">
+        <expr>
+          <call namespace="CtrlMngr" fname="GetSelectedValue">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+          </call>
+        </expr>
+      </vardef>
+      <vardef name="__type_name__" type="string">
+        <expr>
+          <string_const value=""/>
+        </expr>
+      </vardef>
+      <vardef name="__value_name__" type="string">
+        <expr>
+          <string_const value=""/>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <bop opr="or">
+              <expr>
+                <bop opr="eq">
+                  <expr>
+                    <lvar name="__value_idx__"/>
+                  </expr>
+                  <expr>
+                    <int_const value="-1"/>
+                  </expr>
+                </bop>
+              </expr>
+              <expr>
+                <bop opr="eq">
+                  <expr>
+                    <lvar name="__value_idx__"/>
+                  </expr>
+                  <expr>
+                    <call namespace="CtrlMngr" fname="CTRL_MNGR_ERROR"/>
+                  </expr>
+                </bop>
+              </expr>
+            </bop>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <string_const value=""/>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <expr_stmt>
+          <expr>
+            <bop opr="assign">
+              <expr>
+                <lvar name="__value_name__"/>
+              </expr>
+              <expr>
+                <call namespace="CtrlMngr" fname="GetValueName">
+                  <expr>
+                    <lvar name="__varname__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="__value_idx__"/>
+                  </expr>
+                </call>
+              </expr>
+            </bop>
+          </expr>
+        </expr_stmt>
+      </stmt>
+      <stmt>
+        <expr_stmt>
+          <expr>
+            <bop opr="assign">
+              <expr>
+                <lvar name="__type_name__"/>
+              </expr>
+              <expr>
+                <call namespace="CtrlMngr" fname="GetPresentation">
+                  <expr>
+                    <lvar name="__varname__"/>
+                  </expr>
+                  <expr>
+                    <string_const value="VariableNameToTypeName"/>
+                  </expr>
+                </call>
+              </expr>
+            </bop>
+          </expr>
+        </expr_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <bop opr="plus">
+              <expr>
+                <bop opr="plus">
+                  <expr>
+                    <bop opr="plus">
+                      <expr>
+                        <string_const value="Types."/>
+                      </expr>
+                      <expr>
+                        <lvar name="__type_name__"/>
+                      </expr>
+                    </bop>
+                  </expr>
+                  <expr>
+                    <bop opr="plus">
+                      <expr>
+                        <string_const value="."/>
+                      </expr>
+                      <expr>
+                        <lvar name="__value_name__"/>
+                      </expr>
+                    </bop>
+                  </expr>
+                </bop>
+              </expr>
+              <expr>
+                <string_const value=".Properties"/>
+              </expr>
+            </bop>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="GetStringPropertyForVariableValue" type="string">
+      <arg name="__varname__" type="string"/>
+      <arg name="__property_name__" type="string"/>
+      <vardef name="__ns_name__" type="string">
+        <expr>
+          <call namespace="BuildIn" fname="GetValuePropertyNamespaceName">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+          </call>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <call namespace="Calc" fname="HasFunction">
+              <expr>
+                <lvar name="__ns_name__"/>
+              </expr>
+              <expr>
+                <lvar name="__property_name__"/>
+              </expr>
+            </call>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <call namespace="Calc" fname="CallStringFunction">
+                  <expr>
+                    <lvar name="__ns_name__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="__property_name__"/>
+                  </expr>
+                </call>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <string_const value=""/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="GetIntegerPropertyForVariableValue" type="int">
+      <arg name="__varname__" type="string"/>
+      <arg name="__property_name__" type="string"/>
+      <vardef name="__ns_name__" type="string">
+        <expr>
+          <call namespace="BuildIn" fname="GetValuePropertyNamespaceName">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+          </call>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <call namespace="Calc" fname="HasFunction">
+              <expr>
+                <lvar name="__ns_name__"/>
+              </expr>
+              <expr>
+                <lvar name="__property_name__"/>
+              </expr>
+            </call>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <call namespace="Calc" fname="CallIntegerFunction">
+                  <expr>
+                    <lvar name="__ns_name__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="__property_name__"/>
+                  </expr>
+                </call>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <int_const value="0"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="GetFloatPropertyForVariableValue" type="float">
+      <arg name="__varname__" type="string"/>
+      <arg name="__property_name__" type="string"/>
+      <vardef name="__ns_name__" type="string">
+        <expr>
+          <call namespace="BuildIn" fname="GetValuePropertyNamespaceName">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+          </call>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <call namespace="Calc" fname="HasFunction">
+              <expr>
+                <lvar name="__ns_name__"/>
+              </expr>
+              <expr>
+                <lvar name="__property_name__"/>
+              </expr>
+            </call>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <call namespace="Calc" fname="CallFloatFunction">
+                  <expr>
+                    <lvar name="__ns_name__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="__property_name__"/>
+                  </expr>
+                </call>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <float_const value="0.0"/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+    <function name="GetBooleanPropertyForVariableValue" type="bool">
+      <arg name="__varname__" type="string"/>
+      <arg name="__property_name__" type="string"/>
+      <vardef name="__ns_name__" type="string">
+        <expr>
+          <call namespace="BuildIn" fname="GetValuePropertyNamespaceName">
+            <expr>
+              <lvar name="__varname__"/>
+            </expr>
+          </call>
+        </expr>
+      </vardef>
+      <stmt>
+        <ite_stmt>
+          <expr>
+            <call namespace="Calc" fname="HasFunction">
+              <expr>
+                <lvar name="__ns_name__"/>
+              </expr>
+              <expr>
+                <lvar name="__property_name__"/>
+              </expr>
+            </call>
+          </expr>
+          <stmt>
+            <return_stmt>
+              <expr>
+                <call namespace="Calc" fname="CallBooleanFunction">
+                  <expr>
+                    <lvar name="__ns_name__"/>
+                  </expr>
+                  <expr>
+                    <lvar name="__property_name__"/>
+                  </expr>
+                </call>
+              </expr>
+            </return_stmt>
+          </stmt>
+        </ite_stmt>
+      </stmt>
+      <stmt>
+        <return_stmt>
+          <expr>
+            <false/>
+          </expr>
+        </return_stmt>
+      </stmt>
+    </function>
+  </namespace>
+</calculation>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="vt.xsl"?>
+<!-- DOCTYPE vt SYSTEM "vt.dtd" -->
+<vt version="1.0">
+  <info>
+    <command>C:\Program Files (x86)\Configit Model 5.9\bin\x64\pmc -options_from_cws_file U1M1.cws -a 100 -exp_static -s 3 -static -sup_pct 60 -n 100 -nw_blocked_int -nw_blocked_float -nw_blocked_string -nw_blocked_range -novtcl -prs U1M1.prs -clc U1M1.clx U1M1.pm</command>
+    <date>Fri Apr 22 16:20:48 2016&#xA;</date>
+    <sw_version>5.9.16.75</sw_version>
+  </info>
+  <variables count="3">
+    <var index="0" type="bool" domain_size="2"/>
+    <var index="1" type="enum" domain_size="5" ext_type="ubound_int"/>
+    <var index="2" type="enum" domain_size="1"/>
+  </variables>
+  <pm_structure>
+    <pm_var order="0" parent="-1" name="B1" index="0"/>
+    <pm_var order="1" parent="-1" name="I1" index="1"/>
+    <pm_var order="2" parent="-1" name="CurrentLanguage" index="2"/>
+  </pm_structure>
+  <presentation>
+    <layer name="SystemValues">
+      <entry>
+        <key>2</key>
+        <value>]-inf;-1]</value>
+      </entry>
+      <entry>
+        <key>3</key>
+        <value>0</value>
+      </entry>
+      <entry>
+        <key>4</key>
+        <value>[1;99]</value>
+      </entry>
+      <entry>
+        <key>5</key>
+        <value>100</value>
+      </entry>
+      <entry>
+        <key>6</key>
+        <value>[101;inf[</value>
+      </entry>
+      <entry>
+        <key>7</key>
+        <value>{CurrentLanguageType}N/A</value>
+      </entry>
+    </layer>
+    <layer name="SystemVariables">
+      <entry>
+        <key>0</key>
+        <value>B1</value>
+      </entry>
+      <entry>
+        <key>1</key>
+        <value>I1</value>
+      </entry>
+      <entry>
+        <key>2</key>
+        <value>CurrentLanguage</value>
+      </entry>
+    </layer>
+    <layer name="FQNtoUuid">
+      <entry>
+        <key>$PM</key>
+        <value>f7696aea-27c2-4b84-bc96-c4ca2dd3ea48</value>
+      </entry>
+      <entry>
+        <key>$VT</key>
+        <value>97a12be1-5953-4585-8bb0-454d8e705a02</value>
+      </entry>
+      <entry>
+        <key>B1</key>
+        <value>ba548107-a4b3-455f-8dbb-c78b7a18f4ef</value>
+      </entry>
+      <entry>
+        <key>I1</key>
+        <value>6d215dc7-c343-4beb-a584-80535ced488b</value>
+      </entry>
+    </layer>
+  </presentation>
+  <conf_static>
+    <data>
+      <![CDATA[v3 n6 e5 r2
+A-B,B-C
+B-C
+D-B
+P////-A
+C,D,F
+]]>
+    </data>
+  </conf_static>
+</vt>

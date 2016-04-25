@@ -1,0 +1,1 @@
+This file is a placeholder.  Without any files in the lib folder NuGet treats the package as a solution-level package, which is not the desired behavior.
