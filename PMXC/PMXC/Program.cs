@@ -13,12 +13,12 @@ namespace PMXC
         private static Workspace ws;
         static int Main(string[] args)
         {
-            if (args.Length != 1)
-            {
-                return -1;
-            }
-            string pmxfile = args[0];
-            string pmxname = pmxfile.Split('.')[0];
+            //if (args.Length != 1)
+            //{
+            //    return -1;
+            //}
+            string pmxfile = @"C:\TeamCity\buildAgent\work\d06629feb468b75\PMXC\PMXC\bin\Release\U1M1.pmx";
+            string pmxname = "U1M1";
             string modelfileName = pmxname + ".model";            
             ws = new Workspace(modelfileName, Workspace.OpenMode.ForceNew);       
         
